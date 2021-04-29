@@ -15,7 +15,7 @@ def read_data_into_DFs(folder):
     en_xmls = glob.glob('en/*.xml')
     es_xmls = glob.glob('es/*.xml')
 
-    authors_DFs = []
+    en_authors_DFs = []
     en_texts = pd.DataFrame
 
     for xml in en_xmls:
@@ -31,11 +31,11 @@ def read_data_into_DFs(folder):
             concat_tweet = concat_tweet + doc.text + " "
         authorDic['concat'] = concat_tweet
         authorDF = pd.DataFrame(authorDic, index=[0])
-        authors_DFs.append(authorDF)
+        en_authors_DFs.append(authorDF)
 
-    texts = pd.concat(authors_DFs, axis=0)
+    en_texts = pd.concat(en_authors_DFs, axis=0)
 
-    authors_DFs = []
+    es_authors_DFs = []
     es_texts = pd.DataFrame
 
     for xml in es_xmls:
@@ -51,8 +51,8 @@ def read_data_into_DFs(folder):
             concat_tweet = concat_tweet + doc.text + " "
         authorDic['concat'] = concat_tweet
         authorDF = pd.DataFrame(authorDic, index=[0])
-        authors_DFs.append(authorDF)
+        es_authors_DFs.append(authorDF)
 
-    es_texts = pd.concat(authors_DFs, axis=0)
+    es_texts = pd.concat(es_authors_DFs, axis=0)
 
     return [en_texts, es_texts]
