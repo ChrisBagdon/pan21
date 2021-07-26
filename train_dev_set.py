@@ -1,9 +1,10 @@
-import pandas as pd
-import os
-import glob
 import argparse
-import shutil
+import glob
+import os
 import random
+import shutil
+
+import pandas as pd
 
 """
 Creates dev and training sets and matching truth.txt
@@ -44,13 +45,13 @@ if __name__ == "__main__":
         shutil.copyfile(file, target)
         id = file[:-4]
         type = str(truth_data_en.loc[truth_data_en['author_id'] == id, 'spreader'].iloc[0])
-        en_truth_train.write(id+':::'+type+ '\n')
+        en_truth_train.write(id + ':::' + type + '\n')
     for file in dev_xml:
         target = "endev/" + file
         shutil.copyfile(file, target)
         id = file[:-4]
         type = str(truth_data_en.loc[truth_data_en['author_id'] == id, 'spreader'].iloc[0])
-        en_truth_dev.write(id+':::'+type+ '\n')
+        en_truth_dev.write(id + ':::' + type + '\n')
 
     en_truth_dev.close()
     en_truth_train.close()
@@ -80,7 +81,7 @@ if __name__ == "__main__":
         shutil.copyfile(file, target)
         id = file[:-4]
         type = str(truth_data_es.loc[truth_data_es['author_id'] == id, 'spreader'].iloc[0])
-        es_truth_train.write(id + ':::' + type+ '\n')
+        es_truth_train.write(id + ':::' + type + '\n')
     for file in dev_xml2:
         target = "esdev/" + file
         shutil.copyfile(file, target)
@@ -90,9 +91,3 @@ if __name__ == "__main__":
     es_truth_dev.close()
     es_truth_train.close()
     es_full_truth.close()
-
-
-
-
-
-
